@@ -1,0 +1,51 @@
+CF-Wargame
+
+level1.c
+
+This level is a typical stack based buffer overflow, with a 'stack smashing'
+exploit.
+
+The vulnerability lies in the 'get_name' function; there is a vulnerable call to
+'gets()', a function that is considered dangerous and should never be used.
+
+Exploitation occurs when a malicious user provides too much data to be stored in
+the stack based buffer get_name::buff, which causes important data to be
+overwritten on the stack.
+
+One key piece of data that can be overwritten on x86/-64 based systems (and
+indeed, many other systems) is the 'saved return pointer', which keeps track of
+which function should be returned to when the function returns. This pointer
+exists below any variables local to the current function (in this case, buff),
+which means when data is read in by 'gets()', a malicious user can overwrite
+this pointer, causing the program to return to an (almost) arbitrary address.
+
+Conceptually:
+
+BEFORE CORRUPTION:
+
+| 	Room for 'buff'		|	<--- Where buff starts
+|	...			|
+|	More room...		|
+|	...			|
+|	Last bit of room	|	<--- Where buff should finish
+|	Saved Base Pointer	|	<--- A nother important pointer
+|	Saved Return Pointer	|	<--- The money pointer
+
+AFTER CORRUPTION:
+
+| 	"AAAA"			|	<--- Where buff starts
+|	...			|
+|	"AAAA"			|
+|	...			|
+|	"AAAA"			|	<--- Where buff should finish
+|	"AAAA"			|
+|	'Some Address'		|	<--- The new return address
+|	"...\x00"		|	<--- Null terminate string
+
+As you can see, a user has given a large number of 'A' characters to the gets
+call, followed by an address of their choosing, followed by the null terminator.
+
+When this function returns, execution will continue at this new address.
+
+In the case of this program, there is a handy function we can return to which
+allows us to level_up! and move on to the next stage.
