@@ -26,17 +26,17 @@ int main(int argc, char *argv[])
     return -1;
   }
 
-	if(stat_buf.st_gid == 0)
-	{
-		printf("[!]Can't call setuid 0 binaries\n");
-		return -1;
-	}
-	else
-	{
-		system(argv[0]);
-	}
+  if(stat_buf.st_gid == 0)
+  {
+    printf("[!]Can't call setuid 0 binaries\n");
+    return -1;
+  }
+  else
+  {
+    system(argv[0]);
+  }
 
-	return 0;
+  return 0;
 
   return 0;
 }
