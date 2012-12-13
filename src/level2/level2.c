@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
-void jackpot()
+void jackpot(char *sys)
 {
-	system("/level_up");
+	system(sys);
 }
 
 int print_name(char *buff)
