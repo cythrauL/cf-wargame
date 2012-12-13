@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
-#include <grp.h>
+
 
 void print_usage(char *filename)
 {
@@ -26,8 +26,17 @@ int main(int argc, char *argv[])
     return -1;
   }
 
-  struct group  *gr = getgrgid(stat_buf.st_gid);
+	if(stat_buf.st_gid == 0)
+	{
+		printf("[!]Can't call setuid 0 binaries\n");
+		return -1;
+	}
+	else
+	{
+		system(argv[0]);
+	}
 
+	return 0;
 
   return 0;
 }
