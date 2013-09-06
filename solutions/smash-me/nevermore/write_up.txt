@@ -1,6 +1,6 @@
 CF-Wargame
 
-level1.c
+smash-me.c
 
 This level is a typical stack based buffer overflow, with a 'stack smashing'
 exploit.
