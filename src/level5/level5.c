@@ -1,17 +1,24 @@
+#include <fcntl.h>
 #include <stdio.h>
-#include <socket.h>
+#include <sys/socket.h>
 #include <unistd.h>
 #include <errno.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/un.h>
 
-#define edie(error) do  \\
-  {                     \\
-    perror(error);      \\
-    exit(-1);           \\
-  }while 0;
+#define edie(reason)  do{ perror(reason);      \
+                          exit(-1);            \
+                        }while(0);
 
+#define UNIX_PATH_MAX 108
 #define PASS_LEN 16
-
+#define OUT_LEN 64
 #define JACKPOT "/level_up"
+
+#define OUT_FRAG_1 "[!]Password: "
+#define OUT_FRAG_2 " was incorrect :(\n"
 
 int pass_gen(unsigned char *password)
 {
@@ -37,13 +44,19 @@ int pass_gen(unsigned char *password)
       password[c] = password[c] + 97;
     }
   }
-  pasword[PASS_LEN] = '\x00';
+  password[PASS_LEN] = '\x00';
   return 0;
 }
 
-int main()
+void print_usage(char *file_name)
 {
-  char user_data[32];
+  printf("Usage: %s sock_name\n", file_name);
+  return;
+}
+
+int main(int argc, char *argv[])
+{
+  char sad_message[OUT_LEN];
   char password[PASS_LEN];
   char user_password[PASS_LEN];
   pass_gen(password);
@@ -52,7 +65,13 @@ int main()
   socklen_t address_length;
   
   int fd, foreign_fd;
-  
+
+  if(argc < 2)
+  {
+    print_usage(argv[0]);
+    return -1;
+  }
+
   if (fd = socket(PF_UNIX, SOCK_STREAM, 0) < 0)
   {
     edie("socket");
@@ -62,9 +81,9 @@ int main()
 
   address.sun_family = AF_UNIX;
 
-  snprintf(address.sun_path, UNIX_PATH_MAX, file_name);
+  snprintf(address.sun_path, UNIX_PATH_MAX, "%s", argv[1]);
 
-  if(bind(fd, (struct sockaddr *) &address, sizeof(struct sockkaddr_un)) < 0)
+  if(bind(fd, (struct sockaddr *) &address, sizeof(struct sockaddr_un)) < 0)
   {
     edie("bind");
   }
@@ -81,23 +100,19 @@ int main()
   int c;
   for(c = 0; c < 20; c++)
   {
-    if(recv(foreign_fd, 32, 0) <= 0)
+    if(recv(foreign_fd, user_password, PASS_LEN, 0) <= 0)
     {
     edie("recv");
     }
 
-    int data_len = snprintf(user_password, PASS_LEN, "%s", user_data);
     if (strncmp(user_password, password, PASS_LEN) == PASS_LEN)
     {
       system(JACKPOT);
     }
     else
     {
-      char *msg_1 = "Sorry, your guess : ";
-      char *msg_2 = "was incorrect, please try again!\n";
-      send(foreign_fd, msg_1, strlen(msg_1), 0);
-      send(foreign_fd, user_password, data_len,0);
-      send(foreign_fd, )
+      int data_len = snprintf(sad_message, OUT_LEN, "%s%s%s", OUT_FRAG_1, user_password, OUT_FRAG_2);
+      send(foreign_fd, sad_message, data_len, 0);
     }
   }
 }
