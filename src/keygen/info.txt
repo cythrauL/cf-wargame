@@ -1,0 +1,1 @@
+The keygen works by taking the effective user ID (the challange binarie's ID), salting that with the player's username, then hashes the key material.
