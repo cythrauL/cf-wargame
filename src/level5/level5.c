@@ -44,7 +44,8 @@ int pass_gen(unsigned char *password)
       password[c] = password[c] + 97;
     }
   }
-  password[PASS_LEN] = '\x00';
+  password[PASS_LEN - 1] = '\x00';
+  printf("%s\n\n", password);
   return 0;
 }
 
