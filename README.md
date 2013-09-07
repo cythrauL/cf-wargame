@@ -28,12 +28,12 @@ Created by
 </pre>                                                     
 With a special thanks to
 <pre>
-               _ 
-              | |
-__  ____  ____| |
-\ \/ /\ \/ / _` |
- >  <  >  < (_| |
-/_/\_\/_/\_\__,_|
-
+__   ____   _______ 
+\ \ / /\ \ / /  _  \
+ \ V /  \ V /| | | |
+ /   \  /   \| | | |
+/ /^\ \/ /^\ \ |/ / 
+\/   \/\/   \/___/  
+                      
 </pre>                      
 And the rest of the tea, who taught me much of what I know.                                          
