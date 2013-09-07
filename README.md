@@ -19,7 +19,7 @@ work; this environment is designed to give students that understanding.
 
 Created by
 <pre>
- _   _                                              
+  _   _                                              
  | \ | |                                             
  |  \| | _____   _____ _ __ _ __ ___   ___  _ __ ___ 
  | . ` |/ _ \ \ / / _ \ '__| '_ ` _ \ / _ \| '__/ _ \
