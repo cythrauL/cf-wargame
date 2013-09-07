@@ -44,8 +44,10 @@ Installation Instructions
   Run the run_me_as_root.sh shellscript in the root directory!
 
   What it does:
+  <pre>
   Creates the usernames required
   Runs a makefile which:
     Compiles the files
     chown and chmods them
   Moves the levels and the keygen to the root dir
+  </pre>
