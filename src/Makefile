@@ -3,13 +3,13 @@ all: keygen mario bolt juxtaposition ropasaurusrandom compound-problem matrix po
 .PHONY: keygen
 
 clean: remove_keygen
-	rm ./levels/*/*.out
+	rm -f ./levels/*/*.out
 
 keygen:
 	gcc ./keygen/keygen.c -lcrypto -lssl -o ./keygen/level_up
 
 remove_keygen:
-	rm ./keygen/level_up
+	rm -f ./keygen/level_up
 
 mario:
 	gcc ./levels/mario/mario.c -o ./levels/mario/mario.out
