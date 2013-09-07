@@ -18,21 +18,21 @@ professionals with a deep understanding of security flaws and the way exploits
 work; this environment is designed to give students that understanding.
 
 Created by
-
+<pre>
  _   _                                              
  | \ | |                                             
  |  \| | _____   _____ _ __ _ __ ___   ___  _ __ ___ 
  | . ` |/ _ \ \ / / _ \ '__| '_ ` _ \ / _ \| '__/ _ \
  | |\  |  __/\ V /  __/ |  | | | | | | (_) | | |  __/
  \_| \_/\___| \_/ \___|_|  |_| |_| |_|\___/|_|  \___|
-                                                     
+</pre>                                                     
 With a special thanks to
-
+<pre>
 __   ____   _______ 
 \ \ / /\ \ / /  _  \
  \ V /  \ V /| | | |
  /   \  /   \| | | |
 / /^\ \/ /^\ \ |/ / 
 \/   \/\/   \/___/  
-                      
+</pre>                      
 and the rest of the tea, who taught me much of what I know.                                          
