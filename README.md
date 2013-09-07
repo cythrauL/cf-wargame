@@ -36,4 +36,4 @@ __   ____   _______
 \/   \/\/   \/___/  
                       
 </pre>                      
-And the rest of the tea, who taught me much of what I know.                                          
+And the rest of the team, who taught me much of what I know.                                          
