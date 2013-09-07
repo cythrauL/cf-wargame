@@ -4,11 +4,11 @@ cf-wargame
 Ethical hacking, vulnerability research and exploit understanding environment.
 
 Jeopardy 'Capture The Flag' format:
-  When a challange solved, the user is given a key (tied to their username) they
-  can submit to a score-bot for points!
+  When a challange is solved, the user is given a key (tied to their username)
+  which they can submit to a score-bot for points!
 
-The aim of this project is to teach vulnerability research and exploit
-understanding in a fun, safe environment.
+The aim of this project is to teach vulnerability research skills and enable
+understanding exploitation in a fun, safe environment.
 
 _“To know your Enemy, you must become your Enemy.”_
 ― Sun Tzu, The Art of War
