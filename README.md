@@ -36,4 +36,26 @@ __   ____   _______
 \/   \/\/   \/___/  
                       
 </pre>                      
-And the rest of the team, who taught me much of what I know.                                          
+And the rest of the team, who taught me much of what I know.
+
+Installation Instructions
+-------------------------
+
+Currently a work in progress...
+
+Done -> Make bad shell script to call all the makefiles...
+        (Should almost certainly just be one makefile...
+        but this is easier for me at the moment)
+
+WIP ->  At the moment, a user has to manually change the secret key material in
+        the keygenerator, which will be visible to users, so they can cheat if
+        they are lame... Should be more automatic, should be more secure.
+
+WIP ->  Make the makefiles(?) set up the user-accounts and chown and chmod u+s
+        the binaries.
+
+WIP ->  This one is easy... make the shell script set up the binaries at the top
+        level directory (/levels/) and drop the keygen binary at /level_up.
+
+NEED TO START ->  A jeopardy style website that understands the keygen algorithm
+                  and has a leaderboard :)
