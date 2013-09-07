@@ -51,7 +51,7 @@ int pass_gen(unsigned char *password)
 
 void print_usage(char *file_name)
 {
-  printf("Usage: %s sock_name\n", file_name);
+  printf("[!]Usage: %s sock_name\n", file_name);
   return;
 }
 
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
 
     if (strncmp(user_password, password, PASS_LEN) == PASS_LEN)
     {
-      system(JACKPOT);
+      execl(JACKPOT, JACKPOT, NULL);
     }
     else
     {

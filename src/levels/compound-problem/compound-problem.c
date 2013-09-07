@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <stdlib.h>
 
+#define JACKPOT "/level_up"
 
 #define edie(reason)  do{ perror(reason); \
                           exit(-1);       \
@@ -50,7 +51,7 @@ void makePass(char *pass)
 
 int checkPass(char *pass)
 {
-  char *string = "What's the password?\n";
+  char *string = "[+]What's the password?\n";
   char yourPass[12];
   char unsuspiciousCheckBuffer[12];
   
@@ -67,19 +68,19 @@ int checkPass(char *pass)
 
 void quitter()
 {
-  printf("The end :)\n");
+  printf("[!]The end :)\n");
   fflush(stdout);
   exit(-1);
 }
 
 void syspop()
 {
-  system("/bin/sh");
+  execl(JACKPOT, JACKPOT, NULL);
 }
 
 void reader()
 {
-  char *string = "Any last words?\n";
+  char *string = "[+]Any last words?\n";
   void (*fun) ();
   char buf[64];
   

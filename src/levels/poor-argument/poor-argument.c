@@ -2,7 +2,7 @@
 #include <unistd.h>
 void jackpot(char *sys)
 {
-  system(sys);
+  execlp(sys, sys, NULL);
 }
 
 int print_name(char *buff)

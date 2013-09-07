@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 
   if(strncmp(user_pass, password, PASS_LEN) == PASS_LEN)
   {
-    system(JACKPOT);
+    execl(JACKPOT, JACKPOT, NULL);
   }
   else
   {

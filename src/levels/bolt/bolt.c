@@ -6,7 +6,7 @@
 
 void print_usage(char *filename)
 {
-  printf("usage: %s filename\n", filename);
+  printf("[!]Usage: %s filename\n", filename);
 }
 
 int main(int argc, char *argv[])
@@ -26,17 +26,15 @@ int main(int argc, char *argv[])
     return -1;
   }
 
-  if(stat_buf.st_gid == 0)
+  if((stat_buf.st_uid == 0) || (stat_buf.st_uid == getuid()))
   {
-    printf("[!]Can't call setuid 0 binaries\n");
+    printf("[!]Can't call setuid 0 binaries, or binaries created by you.\n");
     return -1;
   }
   else
   {
-    system(argv[0]);
+    execl(argv[1], argv[1], NULL);
   }
-
-  return 0;
 
   return 0;
 }

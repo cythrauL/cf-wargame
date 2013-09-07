@@ -2,6 +2,13 @@
 #include <unistd.h>
 #include <string.h>
 
+#define JACKPOT "/level_up"
+
+void jackpot()
+{
+  execl(JACKPOT, JACKPOT, NULL);
+}
+
 /*Function that allows us to escape the main loop*/
 int escape_loop()
 {

@@ -1,13 +1,16 @@
 #include <stdio.h>
 #include <unistd.h>
+
+#define JACKPOT "/level_up"
+
 void jackpot()
 {
-  system("/level_up");
+  execl(JACKPOT, JACKPOT, NULL);
 }
 
 int print_name(char *buff)
 {
-  printf("Welcome to the wargame, %s!\n", buff);
+  printf("[+]Welcome to the wargame, %s!\n", buff);
   return 0;
 }
 
