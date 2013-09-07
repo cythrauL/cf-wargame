@@ -7,7 +7,7 @@ clean: remove_keygen
 
 keygen:
 	gcc ./keygen/keygen.c -w -lcrypto -lssl -o ./keygen/level_up
-	chown root /keygen/level_up
+	chown root ./keygen/level_up
 
 remove_keygen:
 	rm -f ./keygen/level_up
