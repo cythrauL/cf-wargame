@@ -8,6 +8,8 @@
 
 #define MAX_DATA_LEN 256
 
+#define SECRET_KEY_MATERIAL "SOMESECRETKEYsomesecretkey"
+
 int main()
 {
   unsigned char sha_digest[SHA_DIGEST_LENGTH];
@@ -30,7 +32,10 @@ int main()
     exit(-1);
   }
 
-  int data_len = snprintf(key_material, MAX_DATA_LEN, "%s%s", euid_data->pw_name, uid_data->pw_name);
+  int data_len = snprintf(key_material, MAX_DATA_LEN, "%s%s%s",
+                          SECRET_KEY_MATERIAL,
+                          euid_data->pw_name,
+                          uid_data->pw_name);
   if (data_len > MAX_DATA_LEN)
   {
     data_len = MAX_DATA_LEN;
