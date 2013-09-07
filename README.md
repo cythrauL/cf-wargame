@@ -10,7 +10,7 @@ Jeopardy 'Capture The Flag' format:
 The aim of this project is to teach vulnerability research and exploit
 understanding in a fun, safe environment.
 
-“To know your Enemy, you must become your Enemy.” 
+_“To know your Enemy, you must become your Enemy.”_
 ― Sun Tzu, The Art of War
 
 The best security mitigations, patches and secure code come from security
@@ -28,11 +28,12 @@ Created by
 </pre>                                                     
 With a special thanks to
 <pre>
-__   ____   _______ 
-\ \ / /\ \ / /  _  \
- \ V /  \ V /| | | |
- /   \  /   \| | | |
-/ /^\ \/ /^\ \ |/ / 
-\/   \/\/   \/___/  
+               _ 
+              | |
+__  ____  ____| |
+\ \/ /\ \/ / _` |
+ >  <  >  < (_| |
+/_/\_\/_/\_\__,_|
+
 </pre>                      
-and the rest of the tea, who taught me much of what I know.                                          
+And the rest of the tea, who taught me much of what I know.                                          
