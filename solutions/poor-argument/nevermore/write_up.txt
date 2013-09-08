@@ -1,0 +1,74 @@
+This challenge proved to be way harder than I intended it to be, and was a
+really fun exercise!
+
+Note: This exploit will only work on x86, as it relies on the cdecl calling
+convention :) The binary may also be exploitable on other platforms, though I
+haven't tested it myself.
+
+The vulerability is the same as in smash-me, so read that first if you haven't.
+
+The difference is, this time the jackpot function takes an argument, and uses
+that argument as the arg to execlp... so how does this affect us?
+
+as you recall, when we smashed the stack last time we overwrote the saved return
+pointer, like so:
+
+Conceptually:
+
+BEFORE CORRUPTION:
+
+|       Room for 'buff'         |       <--- Where buff starts
+|       ...                     |
+|       More room...            |
+|       ...                     |
+|       Last bit of room        |       <--- Where buff should finish
+|       Saved Base Pointer      |       <--- A nother important pointer
+|       Saved Return Pointer    |       <--- The money pointer
+
+AFTER CORRUPTION:
+
+|       "AAAA"                  |       <--- Where buff starts
+|       ...                     |
+|       "AAAA"                  |
+|       ...                     |
+|       "AAAA"                  |       <--- Where buff should finish
+|       "AAAA"                  |
+|       'Some Address'          |       <--- The new return address
+|       "...\x00"               |       <--- Null terminate string
+
+When the function returns, the top of esp will have whatever garbage left over
+AFTER the saved return pointer that we over-wrote.
+
+This is because ESP 'pops' the stack frame relating to our current function call
+(the get_name() function) by adding the size of the stack frame to esp. The size
+of the stack frame is the number of bytes between ESP and the end of the saved
+return pointer; hence, esp now points to the other data we overwrote.
+
+But what does this mean?
+
+It means we control the argument to jackpot(), and therefore we control the
+argument to execlp(). The argument is a pointer to a string, containing the
+filename to be executed.
+
+What I did next was find some byte in the binary's image (since that is loaded
+at a static address) who's next byte is a null. Conveniently, I found a 'd'
+character (made conveniant by the fact it is a normal, printable ascii char,
+though if it wasn't, it wouldn't be a problem) followed by a null at the
+address: 0x080485b8. Making sure the next few bytes I overwrote after saved EIP
+contained this address, I moved on to the next problem.
+
+The next step was to create a soft link in the current directory to the level_up
+binary, which I did like so:
+
+ln -s /level_up ./d
+
+I fired up the program with my exploit and... FAIL! It didn't work.
+
+This left me perplexed for a while until I realised that 'execlp' is fairly
+different from 'system'. Whilst 'system' will look in the current directory for
+binaries, execlp will simply look at everything in the 'PATH' environment
+variable. Since this is user-controlled, we win again.
+
+export PATH=$PATH:[the current directory]
+
+With an updated path variable, I fired up my exploit and got the flag :)
