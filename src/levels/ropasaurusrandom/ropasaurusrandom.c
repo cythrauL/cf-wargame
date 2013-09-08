@@ -43,7 +43,7 @@ gadget_2:
     "ret"
   );
 
-gadged_3:
+gadget_3:
   asm(
     "movl $0x70755f6c, %ebx\n"
     "movl $0x65766f6c, %edx\n"
