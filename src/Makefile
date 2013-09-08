@@ -27,12 +27,12 @@ juxtaposition:
 	chmod u+s ./levels/juxtaposition/juxtaposition.out
 
 ropasaurusrandom:
-	gcc ./levels/ropasaurusrandom/ropasaurusrandom.c -w -m32 -fno-stack-protector -PIE -o ./levels/ropasaurusrandom/ropasaurusrandom.out
-	chown ropasaurus ./levels/ropasaurusrandom/ropasaurusrandom.out
+	gcc ./levels/ropasaurusrandom/ropasaurusrandom.c -w -m32 -fno-stack-protector -pie -o ./levels/ropasaurusrandom/ropasaurusrandom.out
+	chown ropasaurusrandom ./levels/ropasaurusrandom/ropasaurusrandom.out
 	chmod u+s ./levels/ropasaurusrandom/ropasaurusrandom.out
 
 compound-problem:
-	gcc ./levels/compound-problem/compound-problem.c -w -PIE -o ./levels/compound-problem/compound-problem.out
+	gcc ./levels/compound-problem/compound-problem.c -w -pie -o ./levels/compound-problem/compound-problem.out
 	chown compound-problem ./levels/compound-problem/compound-problem.out
 	chmod u+s ./levels/compound-problem/compound-problem.out
 
