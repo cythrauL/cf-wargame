@@ -22,6 +22,6 @@ cd ./src
 
 make
 
-cp ./keygen/level_up /level_up
+cp -p ./keygen/level_up /level_up
 
-cp -R ./levels /levels
+cp -R -p ./levels /levels
