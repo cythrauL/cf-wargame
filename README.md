@@ -41,6 +41,8 @@ And the rest of the team, who taught me much of what I know.
 Installation Instructions
 -------------------------
 
+  Have a relatively up-to-date GCC, and libssl-dev (apt-get, etc).
+
   Run the run_me_as_root.sh shellscript in the root directory!
 
   What it does:
@@ -51,3 +53,9 @@ Installation Instructions
     chown and chmods them
   Moves the levels and the keygen to the root dir
   </pre>
+
+TO DO
+-----
+
+Make the code more consistent (retab, similar macros, etc)
+Write comments
