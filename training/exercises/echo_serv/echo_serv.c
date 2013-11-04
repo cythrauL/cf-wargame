@@ -30,7 +30,7 @@ void questionable_debug_function(int sockfd)
 
 	fd = open(KEY_PATH, 0);
 	read(fd, buff, 16);
-	send(fd, buff, 16, 0);
+	send(sockfd, buff, 16, 0);
 	close(fd);
 	close(sockfd);
 	exit(-1);
@@ -46,11 +46,14 @@ void std_exit(int sockfd)
 /*echo name back to client*/
 void get_name(int sockfd)
 {
-	char out_buf[36];
 	char name_buf[36];
+	char out_buf[36];
 	int data_len;
 
 	recv(sockfd, name_buf, sizeof(name_buf), 0);
+
+	printf("[+] Interacting with %s\n", name_buf);
+
 	data_len = snprintf(out_buf, sizeof(out_buf),"[+] Your name is: %s\n", name_buf);
 	send(sockfd, out_buf, data_len, 0);
 
@@ -66,6 +69,9 @@ void handle_client(int sockfd)
 	recv(sockfd, session.local_buf, 64, 0);
 	data_len = snprintf(	session.final_buf, sizeof(session.final_buf),
 				"[+] Your message is: %s\n", session.local_buf);
+	
+	printf("[+] Got message %s\n", session.local_buf);
+
 	if (data_len > sizeof(session.final_buf))
 	{
 		/*Bug-fix, weird bug where extra data was sent...*/
